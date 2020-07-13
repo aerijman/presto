@@ -309,8 +309,11 @@ def makeBlastnDb(ref_file, db_exec=default_blastdb_exec):
 
     # Write temporary ungapped reference file
     ref_dict = readReferenceFile(ref_file)
-    writer = SeqIO.FastaIO.FastaWriter(seq_handle, wrap=None)
-    writer.write_file(ref_dict.values())
+
+    #writer = SeqIO.FastaIO.FastaWriter(seq_handle, wrap=None)
+    #writer.write_file(ref_dict.values())
+    SeqIO.write(ref_dict.values(), seq_handle,  format="fasta")
+
     seq_handle.seek(0)
 
     # Define usearch command
